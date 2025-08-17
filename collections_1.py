@@ -1,5 +1,5 @@
 
-from collections import deque, UserDict
+from collections import deque, UserDict, defaultdict, namedtuple
 
 list_of_symbols = [1, "20", 3, "41", 5, "67", 7, 8, "90", 10]
 dial_codes = [
@@ -15,6 +15,10 @@ dial_codes = [
 dic_1 = { "a": 1, "b": 2, "c": 3 }
 dic_2 = { "a": 10, "d": 2, "e": 3 }
 dic_3 = dic_1 | dic_2
+
+user_info = ("John", "Doe", "john.doe@example.com", "1234567890")
+User = namedtuple("User_Info", "first_name, last_name, email, phone_number")
+user_john = User(*user_info)
 
 
 country_codes = {country: code for code, country in dial_codes}
@@ -52,10 +56,11 @@ class StringKeysDict(UserDict):
 
 
 if __name__ == '__main__':
+    print(user_john.first_name)
+
     test = StringKeysDict()
     test["a"] = 10
     test[2] = 22
-
     print(test["a"])
 
     # temp = []
