@@ -1,4 +1,5 @@
 import collections
+import time
 
 
 def is_palindrome(value: str, without_spaces = False):
@@ -23,3 +24,15 @@ def count_letters(text, only_alpha=True) -> dict:
         for i in text:
             def_dict[i] += 1
     return def_dict
+
+def clock(func):
+    """Декоратор для замера времени выполнения функции"""
+    def clocked(*args):
+        t0 = time.perf_counter()
+        result = func(*args)
+        elapsed = time.perf_counter() - t0
+        name = func.__name__
+        args_str = ', '.join(repr(arg) for arg in args)
+        print(f'[{elapsed:0.8f}s] {name}({args_str})] -> {result}')
+        return result
+    return clocked
